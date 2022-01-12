@@ -23,7 +23,18 @@
 				.apod-img {
 					max-width: 50vw;
 					max-height: 60vh;
+
+					&.loading {
+						height: 0;
+					}
 				}
+			}
+
+			.loader {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 300px;
 			}
 		}
 	}
