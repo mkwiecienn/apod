@@ -1,42 +1,59 @@
-import { useEffect, useState } from "react";
-import { APOD, fetchApod, isNASAError, NASAResponseError } from "../../api";
-import Apod from "../../components/Apod/Apod";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import { useEffect, useState } from 'react';
+import { APOD, fetchApod, saveApod } from '../../data/apod';
+import Apod from '../../components/Apod/Apod';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import { isNASAError, NASAResponseError } from '../../api';
+import { Link } from 'react-router-dom';
+import './ApodViewer.scss';
 
 function ApodViewer() {
-    const [apod, setApod] = useState<APOD>();
-    const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<NASAResponseError | null>()
+	const [ apod, setApod ] = useState<APOD>();
+	const [ loading, setLoading ] = useState<boolean>(false);
+	const [ error, setError ] = useState<NASAResponseError | null>();
 
-    const _getApod = async () => {
-        setLoading(true);
-        setError(null);
+	const getApod = async () => {
+		setLoading(true);
+		setError(null);
 
-        const apodRes = await fetchApod();
+		const apodRes = await fetchApod();
 
-        console.log(apodRes);
+		if (isNASAError(apodRes)) {
+			setError(apodRes);
+		} else {
+			setApod(apodRes);
+		}
 
-        if (isNASAError(apodRes)) {
-            setError(apodRes);
-        } else {
-            setApod(apodRes[0])
-        }
+		setLoading(false);
+	};
 
-        setLoading(false);
-    }
+	const addToFavourite = () => {
+		if (apod) {
+			saveApod(apod);
+		}
+	};
 
-    useEffect(() => {
-        _getApod()
-    }, [])
+	useEffect(() => {
+		getApod();
+	}, []);
 
-    return (
-        <div className='Viewer'>
-            {loading && <span>Loading...</span>}
-            {error && <ErrorMessage error={error}/>}
-            {apod && <Apod apod={apod}/>}
-        </div>
-    )
+	return (
+		<div className="ApodViewer">
+			{loading && <span>Loading...</span>}
+			{error && <ErrorMessage error={error} />}
+			{apod && <Apod apod={apod} />}
+			<div className="buttons-wrapper">
+				<button className="footer-item" onClick={getApod}>
+					next
+				</button>
+				<button className="footer-item" onClick={addToFavourite}>
+					save
+				</button>
+				<Link className="footer-item" to="/gallery">
+					Go to gallery
+				</Link>
+			</div>
+		</div>
+	);
 }
 
 export default ApodViewer;
-

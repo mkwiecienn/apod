@@ -1,0 +1,21 @@
+@import '../../variables.scss';
+
+.ApodViewer {
+	position: relative;
+
+	.buttons-wrapper {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+
+		height: $footer-height;
+		display: flex;
+		background-color: white;
+		justify-content: center;
+		align-items: center;
+
+		.footer-item {
+			margin-right: 8px;
+		}
+	}
+}

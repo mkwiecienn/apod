@@ -1,0 +1,30 @@
+.Apod .details-table {
+	width: 90vw;
+	font-size: 0.8rem;
+	border-collapse: separate;
+	border-spacing: 0 1.25em;
+
+	tr {
+		margin-bottom: 8px;
+
+		td {
+			&:nth-child(1) {
+				width: 30%;
+				font-weight: bold;
+			}
+
+			&:nth-child(2) {
+				text-align: left;
+			}
+
+			&.apod-img-wrapper {
+				text-align: center;
+
+				.apod-img {
+					max-width: 50vw;
+					max-height: 60vh;
+				}
+			}
+		}
+	}
+}

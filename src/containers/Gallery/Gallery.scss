@@ -1,0 +1,10 @@
+.Gallery {
+	padding: 32px;
+	display: grid;
+	grid-gap: 32px;
+	grid-template-columns: repeat(auto-fill, minmax(100px, 300px));
+
+	.gallery-item {
+		max-width: 264px;
+	}
+}
