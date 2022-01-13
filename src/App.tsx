@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import ApodViewer from './containers/ApodViewer/ApodViewer';
 import Gallery from './containers/Gallery/Gallery';
 import './App.scss';
@@ -6,10 +6,14 @@ import './App.scss';
 function App() {
 	return (
 		<div className="App">
-			<Routes>
-				<Route path="/gallery" element={<Gallery />} />
-				<Route path="/" element={<ApodViewer />} />
-			</Routes>
+			<Switch>
+				<Route path="/gallery">
+					<Gallery />
+				</Route>
+				<Route path="/">
+					<ApodViewer />
+				</Route>
+			</Switch>
 		</div>
 	);
 }

@@ -6,10 +6,10 @@ interface ErrorMessageProps {
 }
 
 const ErrorMessage = ({ error }: ErrorMessageProps) => (
-	<p className="ErrorMessage">
+	<div className="ErrorMessage">
 		{error.code && <h3>{error.code}</h3>}
 		<p>{error.message}</p>
-	</p>
+	</div>
 );
 
 export default ErrorMessage;

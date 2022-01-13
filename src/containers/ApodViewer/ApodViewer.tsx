@@ -38,7 +38,7 @@ function ApodViewer() {
 
 	return (
 		<div className="ApodViewer">
-			{loading && <span>Loading...</span>}
+			{loading && <span data-testid="apod-viewer-loader">Loading...</span>}
 			{error && <ErrorMessage error={error} />}
 			{apod && <Apod apod={apod} />}
 			<div className="buttons-wrapper">
@@ -48,7 +48,7 @@ function ApodViewer() {
 				<button className="footer-item" onClick={addToFavourite}>
 					save
 				</button>
-				<Link className="footer-item" to="/gallery">
+				<Link data-testid="gallery-link" className="footer-item" to="/gallery">
 					Go to gallery
 				</Link>
 			</div>
